@@ -169,6 +169,14 @@ async def register(user_data: UserRegister):
     if existing:
         raise HTTPException(status_code=400, detail="Email already registered")
     
+    # Admin authorization check
+    if user_data.role == 'admin':
+        admin_email = os.environ.get('ADMIN_EMAIL')
+        admin_password = os.environ.get('ADMIN_PASSWORD')
+        
+        if user_data.email != admin_email or user_data.password != admin_password:
+            raise HTTPException(status_code=403, detail="Unauthorized: You are not authorized to register as admin")
+    
     # Create user
     user = User(
         email=user_data.email,
