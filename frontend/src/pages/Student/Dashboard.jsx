@@ -24,6 +24,14 @@ const statusColors = {
   'Cannot be Resolved': 'bg-gray-100 text-gray-800 border-gray-200'
 };
 
+const subcategoryOptions = {
+  Electrical: ['Fan not working', 'Light not working', 'AC not working', 'Switch/Socket issue', 'Power outage', 'Wiring problem'],
+  Plumbing: ['Leaking tap', 'Clogged drain', 'Toilet not flushing', 'No water supply', 'Broken pipe', 'Water heater issue'],
+  Cleaning: ['Garbage not collected', 'Dirty common area', 'Pest control needed', 'Washroom uncleaned', 'Floor needs mopping'],
+  Carpentry: ['Broken door', 'Window not closing', 'Broken furniture', 'Loose hinges', 'Cabinet repair needed'],
+  Other: ['General maintenance', 'Security issue', 'Noise complaint', 'Other']
+};
+
 export default function StudentDashboard() {
   const { user, logout } = useAuth();
   const [complaints, setComplaints] = useState([]);
@@ -34,8 +42,7 @@ export default function StudentDashboard() {
     floor: user?.floor || '',
     room: user?.room || '',
     category: '',
-    subcategory: '',
-    description: ''
+    subcategory: ''
   });
 
   useEffect(() => {
