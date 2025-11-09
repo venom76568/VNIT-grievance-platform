@@ -1,15 +1,15 @@
-import { useState } from 'react';
-import { Link } from 'react-router-dom';
-import { useAuth } from '@/App';
-import { Button } from '@/components/ui/button';
-import { Input } from '@/components/ui/input';
-import { Label } from '@/components/ui/label';
-import { Mail, Lock, Building2 } from 'lucide-react';
+import { useState } from "react";
+import { Link } from "react-router-dom";
+import { useAuth } from "../../App";
+import { Button } from "../../components/ui/button";
+import { Input } from "../../components/ui/input";
+import { Label } from "../../components/ui/label";
+import { Mail, Lock, Building2 } from "lucide-react";
 
 export default function Login() {
   const { login } = useAuth();
-  const [email, setEmail] = useState('');
-  const [password, setPassword] = useState('');
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
   const [loading, setLoading] = useState(false);
 
   const handleSubmit = async (e) => {
@@ -32,13 +32,23 @@ export default function Login() {
             <div className="inline-flex items-center justify-center w-16 h-16 bg-gradient-to-br from-blue-500 to-green-500 rounded-2xl mb-4 shadow-lg">
               <Building2 className="w-8 h-8 text-white" />
             </div>
-            <h1 className="text-3xl font-bold text-gray-900 mb-2">Welcome Back</h1>
-            <p className="text-gray-600 text-sm">Sign in to manage your hostel grievances</p>
+            <h1 className="text-3xl font-bold text-gray-900 mb-2">
+              Welcome Back
+            </h1>
+            <p className="text-gray-600 text-sm">
+              Sign in to manage your hostel grievances
+            </p>
           </div>
 
-          <form onSubmit={handleSubmit} className="space-y-6" data-testid="login-form">
+          <form
+            onSubmit={handleSubmit}
+            className="space-y-6"
+            data-testid="login-form"
+          >
             <div className="space-y-2">
-              <Label htmlFor="email" className="text-gray-700 font-medium">Email Address</Label>
+              <Label htmlFor="email" className="text-gray-700 font-medium">
+                Email Address
+              </Label>
               <div className="relative">
                 <Mail className="absolute left-3 top-1/2 -translate-y-1/2 w-5 h-5 text-gray-400" />
                 <Input
@@ -55,7 +65,9 @@ export default function Login() {
             </div>
 
             <div className="space-y-2">
-              <Label htmlFor="password" className="text-gray-700 font-medium">Password</Label>
+              <Label htmlFor="password" className="text-gray-700 font-medium">
+                Password
+              </Label>
               <div className="relative">
                 <Lock className="absolute left-3 top-1/2 -translate-y-1/2 w-5 h-5 text-gray-400" />
                 <Input
@@ -77,14 +89,18 @@ export default function Login() {
               className="w-full h-12 bg-gradient-to-r from-blue-500 to-green-500 hover:from-blue-600 hover:to-green-600 text-white font-semibold rounded-xl shadow-lg hover:shadow-xl transition-all duration-300"
               data-testid="login-submit-button"
             >
-              {loading ? 'Signing in...' : 'Sign In'}
+              {loading ? "Signing in..." : "Sign In"}
             </Button>
           </form>
 
           <div className="mt-6 text-center">
             <p className="text-gray-600 text-sm">
-              Don't have an account?{' '}
-              <Link to="/register" className="text-blue-600 hover:text-blue-700 font-semibold" data-testid="register-link">
+              Don't have an account?{" "}
+              <Link
+                to="/register"
+                className="text-blue-600 hover:text-blue-700 font-semibold"
+                data-testid="register-link"
+              >
                 Create Account
               </Link>
             </p>

@@ -597,10 +597,10 @@ app.include_router(api_router)
 
 app.add_middleware(
     CORSMiddleware,
+    allow_origins=["*"],      # ✅ allow from anywhere
     allow_credentials=True,
-    allow_origins=os.environ.get('CORS_ORIGINS', '*').split(','),
-    allow_methods=["*"],
-    allow_headers=["*"],
+    allow_methods=["*"],      # ✅ allow all methods (GET, POST, PUT, DELETE)
+    allow_headers=["*"],      # ✅ allow all custom headers
 )
 
 logging.basicConfig(
