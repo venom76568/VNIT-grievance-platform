@@ -167,7 +167,7 @@ export default function StudentDashboard() {
                 <div className="space-y-2">
                   <Label>Category</Label>
                   <Select
-                    onValueChange={(value) => setFormData({ ...formData, category: value })}
+                    onValueChange={(value) => setFormData({ ...formData, category: value, subcategory: '' })}
                     required
                   >
                     <SelectTrigger className="rounded-xl" data-testid="category-select">
@@ -183,29 +183,25 @@ export default function StudentDashboard() {
                   </Select>
                 </div>
 
-                <div className="space-y-2">
-                  <Label>Subcategory</Label>
-                  <Input
-                    placeholder="E.g., Fan not working, Leaking tap"
-                    value={formData.subcategory}
-                    onChange={(e) => setFormData({ ...formData, subcategory: e.target.value })}
-                    className="rounded-xl"
-                    required
-                    data-testid="subcategory-input"
-                  />
-                </div>
-
-                <div className="space-y-2">
-                  <Label>Description</Label>
-                  <Textarea
-                    placeholder="Describe the issue in detail..."
-                    value={formData.description}
-                    onChange={(e) => setFormData({ ...formData, description: e.target.value })}
-                    className="rounded-xl min-h-[100px]"
-                    required
-                    data-testid="description-textarea"
-                  />
-                </div>
+                {formData.category && (
+                  <div className="space-y-2">
+                    <Label>Issue Type</Label>
+                    <Select
+                      onValueChange={(value) => setFormData({ ...formData, subcategory: value })}
+                      required
+                      value={formData.subcategory}
+                    >
+                      <SelectTrigger className="rounded-xl" data-testid="subcategory-select">
+                        <SelectValue placeholder="Select specific issue" />
+                      </SelectTrigger>
+                      <SelectContent>
+                        {subcategoryOptions[formData.category]?.map((option) => (
+                          <SelectItem key={option} value={option}>{option}</SelectItem>
+                        ))}
+                      </SelectContent>
+                    </Select>
+                  </div>
+                )}
 
                 <Button
                   type="submit"
